@@ -7,9 +7,10 @@ on:
   issue_comment:
     types: [created, edited, deleted]
 
+# && github.event.label.name == 'AzureDevOps'
 jobs:
   alert:
-    if: ${{ !github.event.issue.pull_request && github.event.label.name == 'AzureDevOps'}}
+    if: ${{ !github.event.issue.pull_request }}
     runs-on: ubuntu-latest
     steps:
       - uses: danhellem/github-actions-issue-to-work-item@master
