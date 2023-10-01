@@ -8,15 +8,8 @@ on:
     types: [created, edited, deleted]
 
 jobs:
-  check-label:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check for AzureDevOps label
-        id: check-label
-        run: echo ::set-output name=has_label::$(if [[ $(jq -r ".issue.labels[].name" $GITHUB_EVENT_PATH) == *"AzureDevOps"* ]]; then echo "true"; else echo "false"; fi)
-
   alert:
-    if: ${{ !github.event.issue.pull_request && steps.check-label.outputs.has_label == 'true' }}
+    if: ${{ !github.event.issue.pull_request && contains(github.event.issue.labels.*.name, 'AzureDevOps') }}
     runs-on: ubuntu-latest
     steps:
       - uses: danhellem/github-actions-issue-to-work-item@master
