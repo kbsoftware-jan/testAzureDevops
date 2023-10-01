@@ -9,7 +9,7 @@ on:
 
 jobs:
   alert:
-    if: ${{ !github.event.issue.pull_request }}
+    if: ${{ !github.event.issue.pull_request && github.event.label.name == 'AzureDevOps'}}
     runs-on: ubuntu-latest
     steps:
       - uses: danhellem/github-actions-issue-to-work-item@master
