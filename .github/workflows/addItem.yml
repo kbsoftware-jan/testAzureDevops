@@ -22,6 +22,11 @@ jobs:
           echo "Issue Body: ${{ github.event.issue.body }}"
           echo "Issue State: ${{ github.event.issue.state }}"
           echo "Issue Labels: ${{ join(github.event.issue.labels.*.name, ', ') }}"
+       
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: |
           echo "$GITHUB_CONTEXT"
       
       - uses: danhellem/github-actions-issue-to-work-item@master
