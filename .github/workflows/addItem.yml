@@ -21,7 +21,7 @@ jobs:
           echo "Issue Number: ${{ github.event.issue.number }}"
           echo "Issue Body: ${{ github.event.issue.body }}"
           echo "Issue State: ${{ github.event.issue.state }}"
-          echo "Issue Labels: ${{ join(github.event.issue.labels.*.name, ',
+          echo "Issue Labels: ${{ join(github.event.issue.labels.*.name, ', ') }}"
       
       - uses: danhellem/github-actions-issue-to-work-item@master
         env:
